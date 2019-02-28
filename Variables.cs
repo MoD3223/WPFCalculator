@@ -44,6 +44,23 @@ namespace WPFCalculator
             return k / j;
         }
 
+        public static string Input = "0";
+        public static long Result1;
+        public static long Result2;
+        public static long Result3;
+
+        public static double ResultD1;
+        public static double ResultD2;
+        public static double ResultD3;
+
+        public static bool Zero;
+        public static bool LastAdd;
+        public static bool LastSub;
+        public static bool LastMult;
+        public static bool LastDiv;
+
+
+
 
     }
 }
