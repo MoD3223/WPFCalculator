@@ -11,7 +11,10 @@ namespace WPFCalculator
         //Longs
         public static long AddL(long k, long j)
         {
-            return k + j;
+            long l;
+            l = k + j;
+
+            return l;
         }
         public static long SubL(long k, long j)
         {
@@ -58,6 +61,31 @@ namespace WPFCalculator
         public static bool LastSub;
         public static bool LastMult;
         public static bool LastDiv;
+
+        public static bool LastInputAdd;
+        public static bool LastInputSub;
+        public static bool LastInputMult;
+        public static bool LastInputDiv;
+
+        public static string PFailedToLong = "Error! Number too high.";
+        public static string PFailedToDouble = "Error! Can't parse the number.";
+
+        public static void LastReset()
+        {
+            Zero = false;
+            LastAdd = false;
+            LastSub = false;
+            LastMult = false;
+            LastDiv = false;
+        }
+
+        public static void LastInputReset()
+        {
+            LastInputAdd = false;
+            LastInputSub = false;
+            LastInputMult = false;
+            LastInputDiv = false;
+        }
 
 
 

@@ -36,6 +36,7 @@ namespace WPFCalculator
             {
                 Variables.Input += "7";
             }
+            Variables.Zero = false;
             lbl1.Content = Variables.Input;
         }
 
@@ -49,6 +50,7 @@ namespace WPFCalculator
             {
                 Variables.Input += "8";
             }
+            Variables.Zero = false;
             lbl1.Content = Variables.Input;
         }
 
@@ -62,6 +64,7 @@ namespace WPFCalculator
             {
                 Variables.Input += "9";
             }
+            Variables.Zero = false;
             lbl1.Content = Variables.Input;
         }
 
@@ -75,6 +78,7 @@ namespace WPFCalculator
             {
                 Variables.Input += "4";
             }
+            Variables.Zero = false;
             lbl1.Content = Variables.Input;
         }
 
@@ -88,6 +92,7 @@ namespace WPFCalculator
             {
                 Variables.Input += "5";
             }
+            Variables.Zero = false;
             lbl1.Content = Variables.Input;
         }
 
@@ -101,6 +106,7 @@ namespace WPFCalculator
             {
                 Variables.Input += "6";
             }
+            Variables.Zero = false;
             lbl1.Content = Variables.Input;
         }
 
@@ -114,6 +120,7 @@ namespace WPFCalculator
             {
                 Variables.Input += "1";
             }
+            Variables.Zero = false;
             lbl1.Content = Variables.Input;
         }
 
@@ -127,6 +134,7 @@ namespace WPFCalculator
             {
                 Variables.Input += "2";
             }
+            Variables.Zero = false;
             lbl1.Content = Variables.Input;
         }
 
@@ -140,6 +148,7 @@ namespace WPFCalculator
             {
                 Variables.Input += "3";
             }
+            Variables.Zero = false;
             lbl1.Content = Variables.Input;
         }
 
@@ -168,16 +177,68 @@ namespace WPFCalculator
 
         private void BtnEquals_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void BtnPlus_Click(object sender, RoutedEventArgs e)
         {
+            Variables.LastReset();
+            Variables.LastAdd = true;
+
+
+            if (Variables.Input.Contains(",") && Variables.Result1 != 0)
+            {
+                Variables.ResultD1 = Variables.Result1;
+            }
+            else if (Variables.Result1 != 0)
+            {
+                if (Int64.TryParse(Variables.Input, out Variables.Result2))
+                {
+                    Variables.Result1 = Variables.AddL(Variables.Result1, Variables.Result2);
+                    lbl1.Content = Variables.Result1;
+                    Variables.Input = "0";
+                }
+                else
+                {
+                    lbl1.Content = Variables.PFailedToLong;
+                }
+            }
+            else
+            {
+
+                if (Int64.TryParse(Variables.Input, out Variables.Result1))
+                {
+                    Variables.Input = "0";
+                    lbl1.Content = Variables.Input;
+                }
+                else
+                {
+                    lbl1.Content = Variables.PFailedToLong;
+                }
+
+            }
 
         }
 
         private void BtnSub_Click(object sender, RoutedEventArgs e)
         {
+            Variables.LastReset();
+            Variables.LastSub = true;
+
+
+            if (Variables.Result1 != 0)
+            {
+
+            }
+            else
+            {
+                if(Int64.TryParse(Variables.Input, out Variables.Result1))
+                {
+                    //Add stuff here later
+                }
+            }
+
+
 
         }
 
@@ -193,6 +254,12 @@ namespace WPFCalculator
 
         private void BtnReset_Click(object sender, RoutedEventArgs e)
         {
+            Variables.Zero = false;
+            Variables.LastAdd = false;
+            Variables.LastSub = false;
+            Variables.LastMult = false;
+            Variables.LastDiv = false;
+
 
         }
 
