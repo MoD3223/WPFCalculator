@@ -26,7 +26,7 @@
         <Button x:Name="btnDiv" Content="/" HorizontalAlignment="Left" Margin="325,235,0,0" VerticalAlignment="Top" Width="100" Height="50" FontSize="24" Click="BtnDiv_Click"/>
         <Button x:Name="btnReset" Content="Reset" HorizontalAlignment="Left" Margin="430,70,0,0" VerticalAlignment="Top" Width="100" Height="50" FontSize="24" Click="BtnReset_Click"/>
         <Button x:Name="btnBack" Content="Backspace" HorizontalAlignment="Left" Margin="430,125,0,0" VerticalAlignment="Top" Width="100" Height="50" FontSize="20" Click="BtnBack_Click"/>
-        <Button x:Name="btnMinusOne" Content="+/-" HorizontalAlignment="Left" Margin="430,180,0,0" VerticalAlignment="Top" Width="100" Height="50" FontSize="24" Click="BtnMinusOne_Click"/>
+        <Button x:Name="btnPlusMinus" Content="+/-" HorizontalAlignment="Left" Margin="430,180,0,0" VerticalAlignment="Top" Width="100" Height="50" FontSize="24" Click="BtnPlusMinus_Click"/>
 
         <Button Content="Button" HorizontalAlignment="Left" Margin="435,235,0,0" VerticalAlignment="Top" Width="100" Height="50" Visibility="Hidden"/>
     </Grid>

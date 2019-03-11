@@ -154,6 +154,16 @@ namespace WPFCalculator
 
         private void BtnDot_Click(object sender, RoutedEventArgs e)
         {
+            if (!Variables.Input.Contains(","))
+            {
+                Variables.Input += ",";
+                lbl1.Content = Variables.Input;
+            }
+            else
+            {
+
+            }
+
 
         }
 
@@ -186,38 +196,79 @@ namespace WPFCalculator
             Variables.LastAdd = true;
 
 
-            if (Variables.Input.Contains(",") && Variables.Result1 != 0)
+
+            if (Variables.Input.Contains(","))
             {
-                Variables.ResultD1 = Variables.Result1;
-            }
-            else if (Variables.Result1 != 0)
-            {
-                if (Int64.TryParse(Variables.Input, out Variables.Result2))
+                if (Variables.ResultD1 != 0)
                 {
-                    Variables.Result1 = Variables.AddL(Variables.Result1, Variables.Result2);
-                    lbl1.Content = Variables.Result1;
-                    Variables.Input = "0";
+                    if (Double.TryParse(Variables.Input, out Variables.ResultD2))
+                    {
+                        Variables.ResultD1 = Variables.AddD(Variables.ResultD1, Variables.ResultD2);
+                        lbl1.Content = Variables.ResultD1;
+                        Variables.Input = "0";
+                    }
+                    else
+                    {
+                        lbl1.Content = Variables.PFailedToDouble;
+                    }
+                }
+                else if (Variables.Result1 != 0)
+                {
+                    if (Double.TryParse(Variables.Input, out Variables.ResultD2))
+                    {
+                        Variables.ResultD1 = Variables.Result1;
+                        Variables.ResultD1 = Variables.AddD(Variables.ResultD1, Variables.ResultD2);
+                        lbl1.Content = Variables.ResultD1;
+                        Variables.Input = "0";
+                    }
+                    else
+                    {
+                        lbl1.Content = Variables.PFailedToDouble;
+                    }
                 }
                 else
                 {
-                    lbl1.Content = Variables.PFailedToLong;
+                    if (Double.TryParse(Variables.Input, out Variables.ResultD2))
+                    {
+                        Variables.Input = "0";
+                        lbl1.Content = Variables.Input;
+                    }
+                    else
+                    {
+                        lbl1.Content = Variables.PFailedToDouble;
+                    }
                 }
             }
             else
             {
-
-                if (Int64.TryParse(Variables.Input, out Variables.Result1))
+                if (Variables.Result1 != 0)
                 {
-                    Variables.Input = "0";
-                    lbl1.Content = Variables.Input;
+                    if (Int64.TryParse(Variables.Input, out Variables.Result2))
+                    {
+                        Variables.Result1 = Variables.AddL(Variables.Result1, Variables.Result2);
+                        lbl1.Content = Variables.Result1;
+                        Variables.Input = "0";
+                    }
+                    else
+                    {
+                        lbl1.Content = Variables.PFailedToLong;
+                    }
                 }
                 else
                 {
-                    lbl1.Content = Variables.PFailedToLong;
+
+                    if (Int64.TryParse(Variables.Input, out Variables.Result1))
+                    {
+                        Variables.Input = "0";
+                        lbl1.Content = Variables.Input;
+                    }
+                    else
+                    {
+                        lbl1.Content = Variables.PFailedToLong;
+                    }
+
                 }
-
             }
-
         }
 
         private void BtnSub_Click(object sender, RoutedEventArgs e)
@@ -273,9 +324,19 @@ namespace WPFCalculator
             lbl1.Content = Variables.Input;
         }
 
-        private void BtnMinusOne_Click(object sender, RoutedEventArgs e)
+        private void BtnPlusMinus_Click(object sender, RoutedEventArgs e)
         {
-
+            if (Variables.Input.Contains("-"))
+            {
+                Variables.Input.Substring(1, Variables.Input.Length - 1);
+            }
+            else
+            {
+                //For some reason even tho it's at 0 it uses 1 on array
+                //https://stackoverflow.com/questions/26119047/most-efficient-way-of-adding-removing-a-character-to-beginning-of-string
+                Variables.Input = "-" + Variables.Input;
+            }
+            lbl1.Content = Variables.Input;
         }
     }
 }
