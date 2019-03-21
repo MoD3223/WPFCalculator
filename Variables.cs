@@ -50,9 +50,11 @@ namespace WPFCalculator
         public static string Input = "0";
         public static long Result1;
         public static long Result2;
+        public static long Result3;
 
         public static double ResultD1;
         public static double ResultD2;
+        public static double ResultD3;
 
         public static bool Zero;
         public static bool LastAdd;
@@ -85,13 +87,7 @@ namespace WPFCalculator
             LastInputDiv = false;
         }
 
-        public static void ClearNumbers()
-        {
-            Result1 = 0;
-            Result2 = 0;
-            ResultD1 = 0;
-            ResultD2 = 0;
-        }
+
 
 
     }
