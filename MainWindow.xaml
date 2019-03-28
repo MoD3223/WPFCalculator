@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Vault's Calculator" Height="330" Width="555" MaxHeight="330" MaxWidth="555" MinHeight="330" MinWidth="555">
     <Grid>
-        <Label x:Name="lbl1" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="520" Height="50" FontSize="24" FlowDirection="RightToLeft"/>
+        <Label x:Name="lbl1" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="520" Height="50" FontSize="24"/>
         <Button x:Name="btn9" Content="9" HorizontalAlignment="Left" Margin="220,70,0,0" VerticalAlignment="Top" Width="100" Height="50" FontSize="24" Click="Btn9_Click"/>
         <Button x:Name="btn8" Content="8" HorizontalAlignment="Left" Margin="115,70,0,0" VerticalAlignment="Top" Width="100" Height="50" FontSize="24" Click="Btn8_Click"/>
         <Button x:Name="btn7" Content="7" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="100" Height="50" FontSize="24" Click="Btn7_Click"/>
