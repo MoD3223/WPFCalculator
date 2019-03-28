@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace WPFCalculator
 {
@@ -50,11 +51,9 @@ namespace WPFCalculator
         public static string Input = "0";
         public static long Result1;
         public static long Result2;
-        public static long Result3;
 
         public static double ResultD1;
         public static double ResultD2;
-        public static double ResultD3;
 
         public static bool Zero;
         public static bool LastAdd;
@@ -87,7 +86,21 @@ namespace WPFCalculator
             LastInputDiv = false;
         }
 
+        public static void Clear()
+        {
+            Result1 = 0;
+            Result2 = 0;
+            ResultD1 = 0;
+            ResultD2 = 0;
+        }
 
+        public static void Check()
+        {
+            Debug.WriteLine(Result1);
+            Debug.WriteLine(Result2);
+            Debug.WriteLine(ResultD1);
+            Debug.WriteLine(ResultD2);
+        }
 
 
     }
