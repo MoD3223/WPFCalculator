@@ -197,7 +197,7 @@ namespace WPFCalculator
 
 
 
-            if (Variables.Input.Contains(","))
+            if (Variables.Input.Contains(",") || Variables.ResultD1 != 0)
             {
                 if (Variables.ResultD1 != 0)
                 {
@@ -206,6 +206,7 @@ namespace WPFCalculator
                         Variables.ResultD1 = Variables.AddD(Variables.ResultD1, Variables.ResultD2);
                         lbl1.Content = Variables.ResultD1;
                         Variables.Input = "0";
+                        Variables.ResultD2 = 0;
                     }
                     else
                     {
@@ -220,6 +221,8 @@ namespace WPFCalculator
                         Variables.ResultD1 = Variables.AddD(Variables.ResultD1, Variables.ResultD2);
                         lbl1.Content = Variables.ResultD1;
                         Variables.Input = "0";
+                        Variables.Result1 = 0;
+                        Variables.ResultD2 = 0;
                     }
                     else
                     {
@@ -228,7 +231,7 @@ namespace WPFCalculator
                 }
                 else
                 {
-                    if (Double.TryParse(Variables.Input, out Variables.ResultD2))
+                    if (Double.TryParse(Variables.Input, out Variables.ResultD1))
                     {
                         Variables.Input = "0";
                         lbl1.Content = Variables.Input;
@@ -248,6 +251,7 @@ namespace WPFCalculator
                         Variables.Result1 = Variables.AddL(Variables.Result1, Variables.Result2);
                         lbl1.Content = Variables.Result1;
                         Variables.Input = "0";
+                        Variables.Result2 = 0;
                     }
                     else
                     {
@@ -269,6 +273,8 @@ namespace WPFCalculator
 
                 }
             }
+
+            Variables.Check();
         }
 
         private void BtnSub_Click(object sender, RoutedEventArgs e)
@@ -305,12 +311,9 @@ namespace WPFCalculator
 
         private void BtnReset_Click(object sender, RoutedEventArgs e)
         {
-            Variables.Zero = false;
-            Variables.LastAdd = false;
-            Variables.LastSub = false;
-            Variables.LastMult = false;
-            Variables.LastDiv = false;
-
+            Variables.LastReset();
+            Variables.LastInputReset();
+            Variables.Clear();
 
         }
 
@@ -328,12 +331,10 @@ namespace WPFCalculator
         {
             if (Variables.Input.Contains("-"))
             {
-                Variables.Input.Substring(1, Variables.Input.Length - 1);
+                Variables.Input = Variables.Input.Remove(0, 1);
             }
             else
             {
-                //For some reason even tho it's at 0 it uses 1 on array
-                //https://stackoverflow.com/questions/26119047/most-efficient-way-of-adding-removing-a-character-to-beginning-of-string
                 Variables.Input = "-" + Variables.Input;
             }
             lbl1.Content = Variables.Input;
