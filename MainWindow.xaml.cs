@@ -273,8 +273,6 @@ namespace WPFCalculator
 
                 }
             }
-
-            Variables.Check();
         }
 
         private void BtnSub_Click(object sender, RoutedEventArgs e)
@@ -283,20 +281,79 @@ namespace WPFCalculator
             Variables.LastSub = true;
 
 
-            if (Variables.Result1 != 0)
+            if (Variables.Input.Contains(",") || Variables.ResultD1 != 0)
             {
-
+                if (Variables.ResultD1 != 0)
+                {
+                    if (Double.TryParse(Variables.Input, out Variables.ResultD2))
+                    {
+                        Variables.ResultD1 = Variables.SubD(Variables.ResultD1, Variables.ResultD2);
+                        lbl1.Content = Variables.ResultD1;
+                        Variables.Input = "0";
+                        Variables.ResultD2 = 0;
+                    }
+                    else
+                    {
+                        lbl1.Content = Variables.PFailedToDouble;
+                    }
+                }
+                else if (Variables.Result1 != 0)
+                {
+                    if (Double.TryParse(Variables.Input, out Variables.ResultD2)) 
+                    {
+                        Variables.ResultD1 = Variables.Result1;
+                        Variables.ResultD1 = Variables.SubD(Variables.ResultD1, Variables.ResultD2);
+                        lbl1.Content = Variables.ResultD1;
+                        Variables.Input = "0";
+                        Variables.ResultD2 = 0;
+                    }
+                    else
+                    {
+                        lbl1.Content = Variables.PFailedToDouble;
+                    }
+                }
+                else
+                {
+                    if (Double.TryParse(Variables.Input, out Variables.ResultD1))
+                    {
+                        Variables.Input = "0";
+                        lbl1.Content = Variables.Input;
+                    }
+                    else
+                    {
+                        lbl1.Content = Variables.PFailedToDouble;
+                    }
+                }
             }
             else
             {
-                if(Int64.TryParse(Variables.Input, out Variables.Result1))
+                if (Variables.Result1 != 0)
                 {
-                    //Add stuff here later
+                    if (Int64.TryParse(Variables.Input, out Variables.Result2))
+                    {
+                        Variables.Result1 = Variables.SubL(Variables.Result1, Variables.Result2);
+                        lbl1.Content = Variables.Result1;
+                        Variables.Input = "0";
+                        Variables.Result2 = 0;
+                    }
+                    else
+                    {
+                        lbl1.Content = Variables.PFailedToLong;
+                    }
+                }
+                else
+                {
+                    if (Int64.TryParse(Variables.Input, out Variables.Result1))
+                    {
+                        Variables.Input = "0";
+                        lbl1.Content = Variables.Input;
+                    }
+                    else
+                    {
+                        lbl1.Content = Variables.PFailedToLong;
+                    }
                 }
             }
-
-
-
         }
 
         private void BtnMult_Click(object sender, RoutedEventArgs e)
