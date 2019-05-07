@@ -18,13 +18,6 @@ namespace WPFCalculator
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    /// 
-
-    //TODO: Fix multiplying so it shows correct numbers (kinda works now, you just can't multiply or divide by 0)
-    //TODO: Add dividing
-    //TODO: Add working equals sign
-    //TODO: Try moving the text to right side
-
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -194,7 +187,7 @@ namespace WPFCalculator
 
         private void BtnEquals_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void BtnPlus_Click(object sender, RoutedEventArgs e)
@@ -306,7 +299,7 @@ namespace WPFCalculator
                 }
                 else if (Variables.Result1 != 0)
                 {
-                    if (Double.TryParse(Variables.Input, out Variables.ResultD2))
+                    if (Double.TryParse(Variables.Input, out Variables.ResultD2)) 
                     {
                         Variables.ResultD1 = Variables.Result1;
                         Variables.ResultD1 = Variables.SubD(Variables.ResultD1, Variables.ResultD2);
@@ -371,7 +364,7 @@ namespace WPFCalculator
 
             if (Variables.Input.Contains(",") || Variables.ResultD1 != 0)
             {
-                if (Variables.ResultD1 != 0 && Variables.Input != "0")
+                if (Variables.ResultD1 != 0)
                 {
                     if (Double.TryParse(Variables.Input, out Variables.ResultD2))
                     {
@@ -385,12 +378,12 @@ namespace WPFCalculator
                         lbl1.Content = Variables.PFailedToDouble;
                     }
                 }
-                else if (Variables.Result1 != 0 && Variables.Input != "0")
+                else if (Variables.Result1 != 0)
                 {
                     if (Double.TryParse(Variables.Input, out Variables.ResultD2))
                     {
                         Variables.ResultD1 = Variables.Result1;
-                        Variables.ResultD1 = Variables.MultD(Variables.ResultD1, Variables.ResultD2);
+                        Variables.ResultD1 = Variables.MultD(Variables.ResultD2, Variables.ResultD2);
                         lbl1.Content = Variables.ResultD1;
                         Variables.Input = "0";
                         Variables.Result1 = 0;
@@ -400,10 +393,6 @@ namespace WPFCalculator
                     {
                         lbl1.Content = Variables.PFailedToDouble;
                     }
-                }
-                else if (Variables.Input == "0")
-                {
-                    //Do nothing
                 }
                 else
                 {
@@ -420,7 +409,7 @@ namespace WPFCalculator
             }
             else
             {
-                if (Variables.Result1 != 0 && Variables.Input != "0")
+                if (Variables.Result1 != 0)
                 {
                     if (Int64.TryParse(Variables.Input, out Variables.Result2))
                     {
@@ -433,10 +422,6 @@ namespace WPFCalculator
                     {
                         lbl1.Content = Variables.PFailedToLong;
                     }
-                }
-                else if (Variables.Input == "0")
-                {
-                    //Do nothing
                 }
                 else
                 {
@@ -468,7 +453,7 @@ namespace WPFCalculator
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            Variables.Input = Variables.Input.Substring(0, Variables.Input.Length - 1);
+            Variables.Input = Variables.Input.Substring(0, Variables.Input.Length -1);
             if (Variables.Input.Length == 0)
             {
                 Variables.Input += "0";
