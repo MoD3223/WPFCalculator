@@ -92,6 +92,7 @@ namespace WPFCalculator
             Result2 = 0;
             ResultD1 = 0;
             ResultD2 = 0;
+            Input = "0";
         }
 
         public static void Check()

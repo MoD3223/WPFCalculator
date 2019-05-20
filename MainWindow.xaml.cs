@@ -20,8 +20,8 @@ namespace WPFCalculator
     /// </summary>
     /// 
 
-    //TODO: Fix multiplying so it shows correct numbers (kinda works now, you just can't multiply or divide by 0)
-    //TODO: Add dividing
+    //TODO: Fix +/- sign
+    //TODO: Fix Reset sign
     //TODO: Add working equals sign
     //TODO: Try moving the text to right side
 
@@ -455,6 +455,91 @@ namespace WPFCalculator
 
         private void BtnDiv_Click(object sender, RoutedEventArgs e)
         {
+            Variables.LastReset();
+            Variables.LastDiv = true;
+
+            if (Variables.Input.Contains(",") || Variables.ResultD1 != 0)
+            {
+                if (Variables.ResultD1 != 0 && Variables.Input != "0")
+                {
+                    if (Double.TryParse(Variables.Input, out Variables.ResultD2))
+                    {
+                        Variables.ResultD1 = Variables.DivD(Variables.ResultD1, Variables.ResultD2);
+                        lbl1.Content = Variables.ResultD1;
+                        Variables.Input = "0";
+                        Variables.ResultD2 = 0;
+                    }
+                    else
+                    {
+                        lbl1.Content = Variables.PFailedToDouble;
+                    }
+                }
+                else if (Variables.Result1 != 0 && Variables.Input != "0")
+                {
+                    if (Double.TryParse(Variables.Input, out Variables.ResultD2))
+                    {
+                        Variables.ResultD1 = Variables.Result1;
+                        Variables.ResultD1 = Variables.DivD(Variables.ResultD1, Variables.ResultD2);
+                        lbl1.Content = Variables.ResultD1;
+                        Variables.Input = "0";
+                        Variables.Result1 = 0;
+                        Variables.ResultD2 = 0;
+                    }
+                    else
+                    {
+                        lbl1.Content = Variables.PFailedToDouble;
+                    }
+                }
+                else if (Variables.Input == "0")
+                {
+                    //Do nothing
+                }
+                else
+                {
+                    if (Double.TryParse(Variables.Input, out Variables.ResultD1))
+                    {
+                        Variables.Input = "0";
+                        lbl1.Content = Variables.Input;
+                    }
+                    else
+                    {
+                        lbl1.Content = Variables.PFailedToDouble;
+                    }
+                }
+            }
+            else
+            {
+                if (Variables.Result1 != 0 && Variables.Input != "0")
+                {
+                    if (Int64.TryParse(Variables.Input, out Variables.Result2))
+                    {
+                        Variables.Result1 = Variables.DivL(Variables.Result1, Variables.Result2);
+                        lbl1.Content = Variables.Result1;
+                        Variables.Input = "0";
+                        Variables.Result2 = 0;
+                    }
+                    else
+                    {
+                        lbl1.Content = Variables.PFailedToLong;
+                    }
+                }
+                else if (Variables.Input == "0")
+                {
+                    //Do nothing
+                }
+                else
+                {
+                    if (Int64.TryParse(Variables.Input, out Variables.Result1))
+                    {
+                        Variables.Input = "0";
+                        lbl1.Content = Variables.Input;
+                    }
+                    else
+                    {
+                        lbl1.Content = Variables.PFailedToLong;
+                    }
+                }
+            }
 
         }
 
