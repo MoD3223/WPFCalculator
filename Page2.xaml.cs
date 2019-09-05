@@ -13,29 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-
-
-
 namespace WPFCalculator
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for More.xaml
     /// </summary>
-    /// 
-
-    //TODO: Fix +/- sign
-    //TODO: Fix Reset sign
-    //TODO: Add working equals sign
-    //TODO: Try moving the text to right side
-
-    public partial class MainWindow : Window
+    public partial class Page2 : Page
     {
-        public MainWindow()
+        public Page2()
         {
             InitializeComponent();
-
-            FuckingFrame.Navigate(new Page1());
         }
 
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.GoBack();
+        }
     }
 }
