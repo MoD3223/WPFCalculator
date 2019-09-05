@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using WPFCalculator;
+using System.Windows.Controls;
+using Microsoft.
 
 namespace WPFCalculator
 {
@@ -56,10 +59,6 @@ namespace WPFCalculator
         public static double ResultD2;
 
         public static bool Zero;
-        public static bool LastAdd;
-        public static bool LastSub;
-        public static bool LastMult;
-        public static bool LastDiv;
 
         public static bool LastInputAdd;
         public static bool LastInputSub;
@@ -69,14 +68,6 @@ namespace WPFCalculator
         public static string PFailedToLong = "Error! Number too high.";
         public static string PFailedToDouble = "Error! Can't parse the number.";
 
-        public static void LastReset()
-        {
-            Zero = false;
-            LastAdd = false;
-            LastSub = false;
-            LastMult = false;
-            LastDiv = false;
-        }
 
         public static void LastInputReset()
         {
@@ -104,5 +95,20 @@ namespace WPFCalculator
         }
 
 
+
+        public static double x;
+        public static double y;
+
+
+
+        public static double Probability(double x, double y)
+        {
+            x = 1 - x;
+            double a = Math.Pow(x, y);
+            a = 1 - a;
+            return a;
+
+            //1 - ((1 - x) ^ y); //x = chance, y = number of tries (x = 0.2 = 20%)
+        }
     }
 }

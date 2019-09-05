@@ -188,16 +188,138 @@ namespace WPFCalculator
 
         private void BtnEquals_Click(object sender, RoutedEventArgs e)
         {
-
+            if (Variables.LastInputAdd)
+            {
+                AddTwo();
+            }
+            else if (Variables.LastInputSub)
+            {
+                SubstractTwo();
+            }
+            else if (Variables.LastInputMult)
+            {
+                MultiplyTwo();
+            }
+            else if (Variables.LastInputDiv)
+            {
+                DivideTwo();
+            }
+            else
+            {
+                lbl1.Content = "Unexpected Error!";
+            }
         }
 
         private void BtnPlus_Click(object sender, RoutedEventArgs e)
         {
-            Variables.LastReset();
-            Variables.LastAdd = true;
 
+            if (Variables.LastInputSub)
+            {
+                SubstractTwo();
+            }
+            else if (Variables.LastInputMult)
+            {
+                MultiplyTwo();
+            }
+            else if (Variables.LastInputDiv)
+            {
+                DivideTwo();
+            }
+            else
+            {
+                AddTwo();
+            }
+            Variables.LastInputAdd = true;
+            Variables.LastInputSub = false;
+            Variables.LastInputMult = false;
+            Variables.LastInputDiv = false;
+        }
+        private void BtnSub_Click(object sender, RoutedEventArgs e)
+        {
+            if (Variables.LastInputAdd)
+            {
+                AddTwo();
+            }
+            else if (Variables.LastInputMult)
+            {
+                MultiplyTwo();
+            }
+            else if (Variables.LastInputDiv)
+            {
+                DivideTwo();
+            }
+            else
+            {
+                SubstractTwo();
+            }
+            Variables.LastInputAdd = false;
+            Variables.LastInputSub = true;
+            Variables.LastInputMult = false;
+            Variables.LastInputDiv = false;
+        }
 
+        private void BtnMult_Click(object sender, RoutedEventArgs e)
+        {
+            Variables.LastInputMult = true;
 
+            MultiplyTwo();
+            
+        }
+
+        private void BtnDiv_Click(object sender, RoutedEventArgs e)
+        {
+            Variables.LastInputDiv = true;
+
+            DivideTwo();
+
+        }
+
+        private void BtnReset_Click(object sender, RoutedEventArgs e)
+        {
+            Variables.LastInputReset();
+            Variables.Clear();
+            lbl1.Content = Variables.Input;
+        }
+
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            Variables.Input = Variables.Input.Substring(0, Variables.Input.Length - 1);
+            if (Variables.Input.Length == 0)
+            {
+                Variables.Input += "0";
+            }
+            lbl1.Content = Variables.Input;
+        }
+
+        private void BtnPlusMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if (Variables.Input.Contains("-"))
+            {
+                Variables.Input = Variables.Input.Remove(0, 1);
+            }
+            else
+            {
+                Variables.Input = "-" + Variables.Input;
+            }
+            lbl1.Content = Variables.Input;
+        }
+
+        private void BtnMore_Click(object sender, RoutedEventArgs e)
+        {
+            bool Forward = false;
+            if (Forward == true)
+            {
+                this.NavigationService.GoBack();
+            }
+            else
+            {
+                this.NavigationService.Navigate(new Page2());
+                Forward = true;
+            }
+        }
+
+        public void AddTwo()
+        {
             if (Variables.Input.Contains(",") || Variables.ResultD1 != 0)
             {
                 if (Variables.ResultD1 != 0)
@@ -276,12 +398,9 @@ namespace WPFCalculator
             }
         }
 
-        private void BtnSub_Click(object sender, RoutedEventArgs e)
+
+        public void SubstractTwo()
         {
-            Variables.LastReset();
-            Variables.LastSub = true;
-
-
             if (Variables.Input.Contains(",") || Variables.ResultD1 != 0)
             {
                 if (Variables.ResultD1 != 0)
@@ -358,11 +477,8 @@ namespace WPFCalculator
             }
         }
 
-        private void BtnMult_Click(object sender, RoutedEventArgs e)
+        public void MultiplyTwo()
         {
-            Variables.LastReset();
-            Variables.LastMult = true;
-
             if (Variables.Input.Contains(",") || Variables.ResultD1 != 0)
             {
                 if (Variables.ResultD1 != 0 && Variables.Input != "0")
@@ -447,11 +563,9 @@ namespace WPFCalculator
             }
         }
 
-        private void BtnDiv_Click(object sender, RoutedEventArgs e)
-        {
-            Variables.LastReset();
-            Variables.LastDiv = true;
 
+        public void DivideTwo()
+        {
             if (Variables.Input.Contains(",") || Variables.ResultD1 != 0)
             {
                 if (Variables.ResultD1 != 0 && Variables.Input != "0")
@@ -534,55 +648,21 @@ namespace WPFCalculator
                     }
                 }
             }
-
         }
 
-        private void BtnReset_Click(object sender, RoutedEventArgs e)
-        {
-            Variables.LastReset();
-            Variables.LastInputReset();
-            Variables.Clear();
-
-        }
-
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
-        {
-            Variables.Input = Variables.Input.Substring(0, Variables.Input.Length - 1);
-            if (Variables.Input.Length == 0)
-            {
-                Variables.Input += "0";
-            }
-            lbl1.Content = Variables.Input;
-        }
-
-        private void BtnPlusMinus_Click(object sender, RoutedEventArgs e)
-        {
-            if (Variables.Input.Contains("-"))
-            {
-                Variables.Input = Variables.Input.Remove(0, 1);
-            }
-            else
-            {
-                Variables.Input = "-" + Variables.Input;
-            }
-            lbl1.Content = Variables.Input;
-        }
-
-        private void BtnMore_Click(object sender, RoutedEventArgs e)
-        {
-            bool Forward = false;
-
-            if (Forward == false)
-            {
-                this.NavigationService.Navigate(new Page2());
-                Forward = true;
-            }
-            else
-            {
-                this.NavigationService.GoBack();
-            }
 
 
-        }
+
+
+
+
+
+
+
+
+
+
+
     }
+
 }
