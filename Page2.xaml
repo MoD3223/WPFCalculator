@@ -9,11 +9,14 @@
       Title="Vault's Calculator" Height="330" Width="555" MaxHeight="330" MaxWidth="555" MinHeight="330" MinWidth="555">
 
     <Grid>
-        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="325,235,0,0" VerticalAlignment="Top" Width="100" Height="50" FontSize="20" Click="BtnBack_Click"/>
+        <Button x:Name="btnPage1" Content="Page 1" HorizontalAlignment="Left" Margin="325,235,0,0" VerticalAlignment="Top" Width="100" Height="50" FontSize="20" Click="BtnBack_Click"/>
         <Label x:Name="lbl2" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="520" Height="50" FontSize="24"/>
-        <Label x:Name="lblPow1" Content="Chance %" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="75" Height="25" Background="White"/>
-        <Label x:Name="lblPow2" Content="# of tries" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Width="75" Height="25" Background="White"/>
-        <Button x:Name="btnCalcPow" Content="Calculate" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="BtnCalcPow_Click"/>
-        <
+        <Label x:Name="lblPowText1" Content="% Chance" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="75" Height="25" Background="White"/>
+        <TextBox x:Name="txtPow1" Text="" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Width="75" Height="25" Background="White"/>
+        <Label x:Name="lblPowText2" Content="# of tries" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Width="75" Height="25" Background="White"/>
+        <TextBox x:Name="txtPow2" Text="" HorizontalAlignment="Left" Margin="10,150,0,0" VerticalAlignment="Top" Width="75" Height="25" Background="White"/>
+        <Label x:Name="PowResult" Content="Result" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top" Width="75" Height="25" Background="White"/>
+        <Button x:Name="btnCalcPow" Content="Calculate" HorizontalAlignment="Left" Margin="10,210,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="BtnCalcPow_Click"/>
+        
     </Grid>
 </Page>

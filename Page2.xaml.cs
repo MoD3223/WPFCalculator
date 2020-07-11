@@ -29,5 +29,51 @@ namespace WPFCalculator
         {
             this.NavigationService.GoBack();
         }
+
+        private void BtnCalcPow_Click(object sender, RoutedEventArgs e)
+        {
+            CalcPow();
+        }
+
+
+
+
+        public void CalcPow()
+        {
+            if (Double.TryParse(txtPow1.Text, out Variables2.xPow))
+            {
+                Variables2.xParsed = true;
+            }
+            else
+            {
+                txtPow1.Text = Variables.PFailedToDouble;
+                Variables2.xParsed = false;
+            }
+
+            if (Double.TryParse(txtPow2.Text, out Variables2.yPow))
+            {
+                Variables2.yParsed = true;
+            }
+            else
+            {
+                txtPow2.Text = Variables.PFailedToDouble;
+                Variables2.yParsed = false;
+            }
+
+
+            if (Variables2.xParsed && Variables2.yParsed == true)
+            {
+
+
+                Variables2.PowStringResult = Variables2.Probability(Variables2.xPow, Variables2.yPow).ToString();
+                Variables2.PowStringResult += "%";
+                PowResult.Content = Variables2.PowStringResult;
+                
+            }
+
+
+
+        }
+
     }
 }

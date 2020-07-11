@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using WPFCalculator;
 using System.Windows.Controls;
-using Microsoft.
 
 namespace WPFCalculator
 {
@@ -95,18 +94,32 @@ namespace WPFCalculator
         }
 
 
+    }
+        class Variables2
+    {
+        public static string ChanceInput;
+        public static string TriesInput;
 
-        public static double x;
-        public static double y;
+        public static double xPow;
+        public static double yPow;
 
+        public static bool xParsed;
+        public static bool yParsed;
 
+        public static string PowStringResult;
 
-        public static double Probability(double x, double y)
+        public static float Probability(double x, double y)
         {
+            x = x / 100;
             x = 1 - x;
             double a = Math.Pow(x, y);
             a = 1 - a;
-            return a;
+            a = a * 100;
+            float b;
+            string c = a.ToString();
+            float.TryParse(c, out b);
+            return b;
+
 
             //1 - ((1 - x) ^ y); //x = chance, y = number of tries (x = 0.2 = 20%)
         }
